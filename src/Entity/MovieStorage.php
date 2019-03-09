@@ -46,8 +46,15 @@ class MovieStorage extends ContentEntityNullStorage {
    */
   public function mapValues($data, $id) {
     var_dump($data);
-    $result = array_search($id, $data);
-    var_dump($result);
+    $results = $data['tcm']['titles'];
+    foreach ($results as $result) {
+      if ($result['titleId'] == $id) {
+        $movie = $result;
+        break;
+      }
+    }
+
+    var_dump($movie);
     die;
     $results = $data['results'];
     return [
