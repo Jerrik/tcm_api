@@ -53,8 +53,9 @@ class MovieStorage extends ContentEntityNullStorage {
         break;
       }
     }
-
+    echo"<pre>";
     var_dump($movie);
+    echo"</pre>";
     die;
     $results = $data['results'];
     return [
