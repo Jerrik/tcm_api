@@ -46,6 +46,7 @@ class MovieStorage extends ContentEntityNullStorage {
    */
   public function mapValues($data, $id) {
 
+    // Find our movie based on titleId.
     $results = $data['tcm']['titles'];
     foreach ($results as $result) {
       if ($result['titleId'] == $id) {
@@ -53,17 +54,14 @@ class MovieStorage extends ContentEntityNullStorage {
         break;
       }
     }
-    echo"<pre>";
-    var_dump($movie);
-    echo"</pre>";
-    die;
-    $results = $data['results'];
+
+    // Return mapped data.
     return [
-      'id' => $results['id'],
-      'title' => $results['tcm']['titles']['name'],
-      'description' => $results['tcm']['titles']['description'],
-      'image' => $results['tcm']['titles']['imageProfiles'][0]['url'],
-      'year' => $results['tcm']['titles']['releaseYear'],
+      'id' => $movie['titleId'],
+      'title' => $movie['name'],
+      'description' => $movie['description'],
+      'image' => $movie['imageProfiles'][0]['url'],
+      'year' => $movie['releaseYear'],
     ];
   }
 
