@@ -12,23 +12,20 @@
     </div>
 </section>
 
-<div class="album py-5 bg-light">
+<div class="card-footer">
   <div class="container">
 
     <div {{ attributes.addClass('movies-carousel').addClass('row') }}>
       {% for key, movie in movies %}
         <div class="card-block">
-          <div class="card mb-4 shadow-sm">
+          <div class="card shadow-sm">
             <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ movie.image }}">
             <div class="card-body">
               <h3>{{ movie.title }}</h3>
-              <small class="text-muted">ID: {{ movie.id }}</small>
+              <span class="badge badge-pill badge-secondary">{{ movie.year }}</span>
               <p class="card-text">{{ movie.description }}</p>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Year: </button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">{{ movie.year }}</button>
-                </div>
+              <small class="badge">ID: {{ movie.id }}</small>
               </div>
             </div>
           </div>
