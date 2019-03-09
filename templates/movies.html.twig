@@ -13,11 +13,9 @@
 </section>
 
 <div class="card-footer">
-  <div class="container">
-
-    <div {{ attributes.addClass('movies-carousel').addClass('row') }}>
+  <div class="movies-carousel container">
       {% for key, movie in movies %}
-        <div class="card-block">
+        <div class="card-block" style="">
           <div class="card shadow-sm">
             <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ movie.image }}">
             <div class="card-body">
@@ -31,8 +29,5 @@
           </div>
         </div>
       {% endfor %}
-      </div>
-    </div>
-
   </div>
 </div>
