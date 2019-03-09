@@ -4,7 +4,8 @@ namespace Drupal\tcm_api\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpFoundation\Response;
-//use Drupal\Core\Cache\Cache;
+use GuzzleHttp\Client;
+use Drupal\Core\Entity\ContentEntityNullStorage;
 use \Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MoviesController extends ControllerBase {
