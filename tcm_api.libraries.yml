@@ -1,10 +1,10 @@
 slick-carousel:
   css:
     component:
-      '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.9.0/slick/slick.css': { type: external, minified: true }
-      '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.9.0/slick/slick-theme.css': { type: external, minified: true }
+      'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css': { type: external, minified: true }
+      'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css': { type: external, minified: true }
   js:
-    '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.9.0/slick/slick.min.js': { type: external, minified: true }
+    'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js': { type: external, minified: true }
 
 movies:
   js:
