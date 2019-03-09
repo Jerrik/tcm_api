@@ -4,16 +4,35 @@
  * Default theme implementation to present Movies.
  */
 #}
-<div{{ attributes.addClass('movies-carousel') }}>
-  {% for key, movie in movies %}
-    <div>
-      <img src="{{ movie.image }}">
-      <h2>{{ movie.title }}</h2>
-      <ul>
-          <li>Year : {{ movie.year }}</li>
-          <li>ID : {{  movie.id }}</li>
-      </ul>
-      <p>{{ movie.description }}</p>
+
+<section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Objective 4</h1>
+      <p class="lead text-muted">Display showing the latest 6 movies from Watch TCM.</p>
     </div>
-  {% endfor %}
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <div {{ attributes.addClass('movies-carousel').addClass('row') }}>
+      {% for key, movie in movies %}
+        <div class="card mb-4 shadow-sm">
+          <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ movie.image }}">
+          <div class="card-body">
+            <h3>{{ movie.title }}</h3>
+            <p class="card-text">{{ movie.description }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">{{ movie.year }}</button>
+              </div>
+              <small class="text-muted">{{ movie.id }}</small>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+
+  </div>
 </div>
