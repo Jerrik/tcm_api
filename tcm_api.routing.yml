@@ -1,6 +1,13 @@
-comic.character:
-  path: '/db/movie/{id}'
+movie.id:
+  path: '/movie/{id}'
   defaults:
     _controller: '\Drupal\tcm_api\Entity\Movie::content'
+  requirements:
+    _permission: 'access content'
+
+movie.all:
+  path: '/movies'
+  defaults:
+    _controller: '\Drupal\tcm_api\Controller\MoviesController::moviesPage'
   requirements:
     _permission: 'access content'

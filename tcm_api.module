@@ -37,5 +37,11 @@ function tcm_api_theme($existing, $type, $theme, $path) {
           'year' => '',
       ],
     ],
+    'movies' => [
+      'variables' => [
+        'movies' => NULL
+      ],
+      'template' => 'movies',
+    ],
   ];
 }
