@@ -52,7 +52,7 @@ class MoviesController extends ControllerBase {
     $movie_entities = [];
 
     foreach ($movieIds as $id) {
-      $movie_entities = $this->getMovieEntity($id);
+      $movie_entities[] = $this->getMovieEntity($id);
     }
 
     return $movie_entities;
@@ -95,7 +95,7 @@ class MoviesController extends ControllerBase {
     }
 
     return $entity;
-  }
 
+  }
 
 }
