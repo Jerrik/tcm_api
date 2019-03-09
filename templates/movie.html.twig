@@ -5,17 +5,17 @@
  */
 #}
 
-<div class="card mb-3">
+<div class="card bg-light">
+  <img style="width: 50%; display: block;" src="{{ image }}">
+  <br>
   <div class="card-body">
-    <h5 class="card-title">{{title}}</h5>
-    <h6 class="card-subtitle text-muted">{{year}}</h6>
-  </div>
-  <img style="width: 100%; display: block;" src="{{ image }}">
-  <div class="card-body">
+    <h3 class="card-subtitle text-muted">{{year}}</h3>
     <p class="card-text">{{description}}</p>
   </div>
-
+    <br>
   <div class="card-body">
-    <a href="/" class="card-link">&lt; Back home</a>
+    <p>
+        <a href="/" class="card-link">&lt; Back home</a>
+    </p>
   </div>
 </div>
