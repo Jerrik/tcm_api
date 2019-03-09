@@ -1,11 +1,11 @@
-movie.id:
+tcm_api.movie:
   path: '/movie/{id}'
   defaults:
     _controller: '\Drupal\tcm_api\Entity\Movie::content'
   requirements:
     _permission: 'access content'
 
-movie.all:
+tcm_api.all_movies:
   path: '/movies'
   defaults:
     _controller: '\Drupal\tcm_api\Controller\MoviesController::moviesPage'
