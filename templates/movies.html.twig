@@ -15,8 +15,8 @@
 <div class="card-footer">
   <div class="movies-carousel container">
       {% for key, movie in movies %}
-        <div class="card-block" style="margin: 0 7px 0 7px;">
-          <div class="card border-light">
+        <div class="card-block">
+          <div class="card border-light" style="margin: 0px 7px 0px 7px;">
             <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ movie.image }}">
             <div class="card-body">
               <h3>{{ movie.title }}</h3>
