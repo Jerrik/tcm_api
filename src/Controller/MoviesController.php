@@ -66,7 +66,7 @@ class MoviesController extends ControllerBase {
 
 		if ($titleId) {
 			// Get a storage object.
-			$movie_storage = \Drupal::entityTypeManager()->getStorage('movie_entity');
+			$movie_storage = \Drupal::entityTypeManager()->getStorage('movie');
 			$entity = $movie_storage->load($titleId);
 
 			// If Movie could not be loaded, throw 404.
