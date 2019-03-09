@@ -5,21 +5,17 @@
  */
 #}
 
-<div class="row movie">
-    <div class="col-lg-12">
-    <div class="bs-component">
-        <div class="jumbotron">
-        <h1 class="display-3">{{ title }}</h1>
-        <p class="lead"><img src="{{ image }}" style="display:inline-block;"></p>
-        <hr class="my-4">
-        <p>{{ description }}</p>
-        <span class="badge badge-pill badge-secondary">{{ movie.year }}</span>
-        <small class="text-muted">ID: {{ movie.id }}</small>
-        </div>
-    <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div></div>
-    <br>
-    <hr>
-    <br>
-    <a href="/" class="btn btn-secondary">Home</a>
-    </div>
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <h6 class="card-subtitle text-muted">{{year}}</h6>
+  </div>
+  <img style="width: 100%; display: block;" src="{{ image }}">
+  <div class="card-body">
+    <p class="card-text">{{description}}</p>
+  </div>
+
+  <div class="card-body">
+    <a href="/" class="card-link">&lt; Back home</a>
+  </div>
 </div>
