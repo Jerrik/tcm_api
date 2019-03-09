@@ -76,7 +76,6 @@ class MoviesController extends ControllerBase {
    * Loads each movie as an entity.
    */
   public function getMovieEntity($titleId) {
-    $movie_class = 'Drupal\tcm_api\Entity\Movie';
     $entity = NULL;
 
     if ($titleId) {
@@ -85,7 +84,7 @@ class MoviesController extends ControllerBase {
       $entity = $movie_storage->load($titleId);
 
       // If Movie could not be loaded, throw 404.
-      if (!($entity instanceof $movie_class)) {
+      if (!$entity) {
         throw new NotFoundHttpException();
       }
     }
