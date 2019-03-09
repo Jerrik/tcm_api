@@ -22,13 +22,12 @@ class MoviesController extends ControllerBase {
     // Render Array.
     $build = [
       '#theme' => 'movies',
-      '#type' => 'markup',
+      '#movies' => $movies,
       '#attached' => [
         'library' => [
           'tcm_api/movies',
         ],
       ],
-      '#movies' => $movies,
     ];
 
     return $build;

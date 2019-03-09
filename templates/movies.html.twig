@@ -5,15 +5,15 @@
  */
 #}
 <div{{ attributes.addClass('movies-carousel') }}>
-	{% for key, movie in movies %}
-		<div>
-			<img src="{{ movie.image }}">
-			<h2>{{ movie.title }}</h2>
-			<ul>
-					<li>Year : {{ movie.year }}</li>
-					<li>ID : {{  movie.id }}</li>
-			</ul>
-			<p>{{ movie.description }}</p>
-		</div>
-	{% endfor %}
+  {% for key, movie in movies %}
+    <div>
+      <img src="{{ movie.image }}">
+      <h2>{{ movie.title }}</h2>
+      <ul>
+          <li>Year : {{ movie.year }}</li>
+          <li>ID : {{  movie.id }}</li>
+      </ul>
+      <p>{{ movie.description }}</p>
+    </div>
+  {% endfor %}
 </div>
