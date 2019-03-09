@@ -1,0 +1,5 @@
+name: TCM API
+type: module
+description: Awesome Movies
+core: 8.x
+package: Custom

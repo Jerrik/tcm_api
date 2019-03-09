@@ -1,0 +1,15 @@
+{#
+/**
+ * @file movie.html.twig
+ * Default theme implementation to present Movie data.
+ */
+#}
+<div{{ attributes.addClass('movie') }}>
+    <img src="{{ image }}" style="display:inline-block;float:left;margin-right:1.5rem;">
+    <h2>{{ title }}</h2>
+    <ul>
+        <li>Year : {{ year }}</li>
+        <li>ID : {{  id }}</li>
+    </ul>
+    <p>{{ description }}</p>
+</div>
