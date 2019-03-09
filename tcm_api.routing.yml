@@ -4,6 +4,7 @@ tcm_api.movie:
     _controller: '\Drupal\tcm_api\Entity\Movie::content'
   requirements:
     _permission: 'access content'
+    id: ^[0-9_]+
 
 tcm_api.all_movies:
   path: '/movies'
