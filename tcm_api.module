@@ -44,5 +44,6 @@ function tcm_api_theme($existing, $type, $theme, $path) {
     ],
     'movie_search_form' => [
       'render element' => 'form'
+    ]
   ];
 }
