@@ -22,7 +22,7 @@ tcm_api.search:
     _permission: 'access content'
 
 tcm_api.search_results:
-  path: '/tcm-db/search/{needle}'
+  path: '/tcm-db/search/{search}'
   defaults:
     _controller: '\Drupal\tcm_api\Controller\MoviesController::renderResults'
     _title: 'TCMDb'
