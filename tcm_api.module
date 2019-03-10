@@ -43,7 +43,10 @@ function tcm_api_theme($existing, $type, $theme, $path) {
       ]
     ],
     'movie_search_form' => [
-      'render element' => 'form'
+      'render element' => 'form',
+      'variables' => [
+        'results' => ''
+      ]
     ],
     'search_results' => [
       'variables' => [

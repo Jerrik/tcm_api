@@ -4,6 +4,15 @@
  * Default theme implementation to present Movie data.
  */
 #}
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+
+{# Drupal css form styles #}
+<div class="form--inline">
+	<div class="form-item">{{ form.search_box }}</div>
+	<div class="form-item">{{ form.actions.submit }}</div>
+</div>
 
 {% for key, movie in results %}
 	<div class="card-block">
