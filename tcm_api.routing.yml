@@ -12,3 +12,11 @@ tcm_api.all_movies:
     _controller: '\Drupal\tcm_api\Controller\MoviesController::moviesPage'
   requirements:
     _permission: 'access content'
+
+tcm_api.search:
+  path: '/tcm-db'
+  defaults:
+    _form: '\Drupal\tcm_api\Form\MovieSearchForm'
+    _title: 'TCMDb'
+  requirements:
+    _permission: 'access content'
