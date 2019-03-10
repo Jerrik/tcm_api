@@ -134,7 +134,7 @@ class MoviesController extends ControllerBase {
       $haystack .= $result['tvGenres'];
       $haystack .= $result['name'];
 
-      if (strpos($haystack, $needle) !== false){
+      if (strpos(strtolower($haystack), strtolower($needle)) !== false){
         $ids[] = $result['titleId'];
       }
     }
