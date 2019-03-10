@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Url;
-use \Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Returns video search results
@@ -54,7 +54,7 @@ class MovieSearchForm extends FormBase {
 
   public function searchResults(array $form, FormStateInterface $form_state) {
 
-    // $ajax_response = new AjaxResponse();
+    $ajax_response = new AjaxResponse();
 
     $input = $form_state->getValue('search_box');
     $results = $this->findMovies($input);
@@ -74,10 +74,10 @@ class MovieSearchForm extends FormBase {
     // </div><br><br>';
 
     // }
-    // $ajax_response->addCommand(new HtmlCommand('#search_results', $markup));
+    $ajax_response->addCommand(new HtmlCommand('#search_results', render($build)));
 
-    // return $ajax_response;
-    return new Response(render($build));
+    return $ajax_response;
+    //return new Response(render($build));
     // return ['#markup' => $markup];
   }
 
