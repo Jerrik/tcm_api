@@ -7,6 +7,8 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Url;
+use \Symfony\Component\HttpFoundation\Response;
+
 /**
  * Returns video search results
  */
