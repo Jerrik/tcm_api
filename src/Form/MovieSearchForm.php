@@ -50,16 +50,12 @@ class MovieSearchForm extends FormBase {
     // Do nothing
   }
 
-  public function searchResults(array $form, FormStateInterface $form_state) : Array {
+  public function searchResults(array $form, FormStateInterface $form_state) : AjaxResponse {
 
-    //$ajax_response = new AjaxResponse();
+    $ajax_response = new AjaxResponse();
 
     $input = $form_state->getValue('search_box');
     $results = $this->findMovies($input);
-
-    //$ajax_response->addCommand(new HtmlCommand('#search_results', $results));
-
-    //return $ajax_response;
     $markup = '';
     foreach ($results as $movie) {
       $markup .= '<div class="card bg-light">
@@ -72,7 +68,11 @@ class MovieSearchForm extends FormBase {
     </div><br><br>';
 
     }
-    return ['#markup' => $markup];
+    $ajax_response->addCommand(new HtmlCommand('#search_results', $markup));
+
+    return $ajax_response;
+
+    // return ['#markup' => $markup];
   }
 
     /**

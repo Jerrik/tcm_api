@@ -5,6 +5,7 @@ namespace Drupal\tcm_api\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use GuzzleHttp\Client;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class.
@@ -95,6 +96,15 @@ class MoviesController extends ControllerBase {
 
     return $entity;
 
+  }
+
+  public function renderResults($results) {
+    $build = [
+      '#theme' => 'search_results',
+      '#results' => $results,
+    ];
+    // This is the important part, because will render only the TWIG template.
+    return new Response(render($build));
   }
 
 }
