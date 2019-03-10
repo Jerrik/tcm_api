@@ -48,20 +48,31 @@ class MovieSearchForm extends FormBase {
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // Do nothing
-    $input = $form_state->getValue();
-    echo $input
   }
 
-  public function searchResults(array $form, FormStateInterface $form_state) {
+  public function searchResults(array $form, FormStateInterface $form_state) : Array {
 
-    $ajax_response = new AjaxResponse();
+    //$ajax_response = new AjaxResponse();
 
     $input = $form_state->getValue('search_box');
     $results = $this->findMovies($input);
 
-    $ajax_response->addCommand(new HtmlCommand('#search_results', $results));
+    //$ajax_response->addCommand(new HtmlCommand('#search_results', $results));
 
-    return $ajax_response;
+    //return $ajax_response;
+    $markup = '';
+    foreach ($results as $movie) {
+      $markup .= '<div class="card bg-light">
+      <h3 class="card-subtitle text-muted">' . $movie['title'] . ' (' . $movie['year'] . ')</h3>
+      <img style="width: 50%; display: block;" src="' . $movie['image'] . '">
+      <br>
+      <div class="card-body">
+        <p class="card-text">' . $movie['description'] . '</p>
+      </div>
+    </div><br><br>';
+
+    }
+    return ['#markup' => $markup];
   }
 
     /**
@@ -74,7 +85,7 @@ class MovieSearchForm extends FormBase {
   /**
    * Retrieves Movie ID's and then retrieves each movie as an entity.
    */
-  public function findMovies($needle) : Array {
+  public function findMovies($needle) {
     $client = new Client();
     $response = $client->request('GET', $this->endpoint());
     $data = json_decode($response->getBody(), TRUE);
@@ -86,19 +97,7 @@ class MovieSearchForm extends FormBase {
       $movie_entities[] = $this->getMovieEntity($id);
     }
 
-    $markup = '';
-    foreach ($movie_entities as $movie) {
-      $markup .= '<div class="card bg-light">
-      <h3 class="card-subtitle text-muted">' . $movie['title'] . ' (' . $movie['year'] . ')</h3>
-      <img style="width: 50%; display: block;" src="' . $movie['image'] . '">
-      <br>
-      <div class="card-body">
-        <p class="card-text">' . $movie['description'] . '</p>
-      </div>
-    </div><br><br>';
-
-    }
-    return ['#markup' => $markup];
+    return $movie_entities;
   }
 
   /**
