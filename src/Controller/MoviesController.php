@@ -107,7 +107,7 @@ class MoviesController extends ControllerBase {
     $results = $this->getMovies($search);
 
     $build = [
-      '#theme' => 'movie_search_form',
+      '#theme' => 'search_results',
       '#results' => $results,
     ];
     // This is the important part, because will render only the TWIG template.
