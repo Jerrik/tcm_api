@@ -102,9 +102,9 @@ class MoviesController extends ControllerBase {
 
   }
 
-  public function renderResults($needle) {
+  public function renderResults($search) {
 
-    $results = $this->getMovies($needle);
+    $results = $this->getMovies($search);
 
     $build = [
       '#theme' => 'search_results',
