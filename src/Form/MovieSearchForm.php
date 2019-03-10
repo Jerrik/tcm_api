@@ -50,28 +50,32 @@ class MovieSearchForm extends FormBase {
     // Do nothing
   }
 
-  public function searchResults(array $form, FormStateInterface $form_state) : AjaxResponse {
+  public function searchResults(array $form, FormStateInterface $form_state) {
 
-    $ajax_response = new AjaxResponse();
+    // $ajax_response = new AjaxResponse();
 
     $input = $form_state->getValue('search_box');
     $results = $this->findMovies($input);
-    $markup = '';
-    foreach ($results as $movie) {
-      $markup .= '<div class="card bg-light">
-      <h3 class="card-subtitle text-muted">' . $movie['title'] . ' (' . $movie['year'] . ')</h3>
-      <img style="width: 50%; display: block;" src="' . $movie['image'] . '">
-      <br>
-      <div class="card-body">
-        <p class="card-text">' . $movie['description'] . '</p>
-      </div>
-    </div><br><br>';
+    $build = [
+      '#theme' => 'search_results',
+      '#results' => $results,
+    ];
+    // $markup = '';
+    // foreach ($results as $movie) {
+    //   $markup .= '<div class="card bg-light">
+    //   <h3 class="card-subtitle text-muted">' . $movie['title'] . ' (' . $movie['year'] . ')</h3>
+    //   <img style="width: 50%; display: block;" src="' . $movie['image'] . '">
+    //   <br>
+    //   <div class="card-body">
+    //     <p class="card-text">' . $movie['description'] . '</p>
+    //   </div>
+    // </div><br><br>';
 
-    }
-    $ajax_response->addCommand(new HtmlCommand('#search_results', $markup));
+    // }
+    // $ajax_response->addCommand(new HtmlCommand('#search_results', $markup));
 
-    return $ajax_response;
-
+    // return $ajax_response;
+    return new Response(render($build));
     // return ['#markup' => $markup];
   }
 
