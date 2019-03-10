@@ -124,17 +124,17 @@ class MoviesController extends ControllerBase {
     foreach ($results as $result) {
 
       // Things that content can be searched by
-      $haystack = [];
-      $haystack[] = $result['titleId'];
-      $haystack[] = $result['description'];
-      $haystack[] = $result['releaseYear'];
-      $haystack[] = $result['tvRating'];
-      $haystack[] = $result['tvParticipants'];
-      $haystack[] = $result['tvDirectors'];
-      $haystack[] = $result['tvGenres'];
-      $haystack[] = $result['name'];
+      $haystack = '';
+      $haystack .= $result['titleId'];
+      $haystack .= $result['description'];
+      $haystack .= $result['releaseYear'];
+      $haystack .= $result['tvRating'];
+      $haystack .= $result['tvParticipants'];
+      $haystack .= $result['tvDirectors'];
+      $haystack .= $result['tvGenres'];
+      $haystack .= $result['name'];
 
-      if (in_array($needle, $haystack)){
+      if (strpos($haystack, $needle) !== false){
         $ids[] = $result['titleId'];
       }
     }
