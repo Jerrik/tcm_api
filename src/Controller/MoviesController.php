@@ -122,7 +122,19 @@ class MoviesController extends ControllerBase {
     // Find our movie based on titleId.
     $results = $data['tcm']['titles'];
     foreach ($results as $result) {
-      if (in_array($needle, $result)){
+
+      // Things that content can be searched by
+      $haystack = [];
+      $haystack[] = $result['titleId'];
+      $haystack[] = $result['description'];
+      $haystack[] = $result['releaseYear'];
+      $haystack[] = $result['tvRating'];
+      $haystack[] = $result['tvParticipants'];
+      $haystack[] = $result['tvDirectors'];
+      $haystack[] = $result['tvGenres'];
+      $haystack[] = $result['name'];
+
+      if (in_array($needle, $haystack)){
         $ids[] = $result['titleId'];
       }
     }
