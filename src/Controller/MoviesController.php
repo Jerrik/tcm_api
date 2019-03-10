@@ -44,11 +44,15 @@ class MoviesController extends ControllerBase {
   /**
    * Retrieves Movie ID's and then retrieves each movie as an entity.
    */
-  public function getMovies() {
+  public function getMovies($find = false) {
     $client = new Client();
     $response = $client->request('GET', $this->endpoint());
     $data = json_decode($response->getBody(), TRUE);
-    $movieIds = $this->getMovieIds($data);
+    if (!$find) {
+      $movieIds = $this->getMovieIds($data);
+    } else {
+      $movieIds = $this->findMovieIds($data, $find);
+    }
 
     $movie_entities = [];
 
@@ -98,13 +102,32 @@ class MoviesController extends ControllerBase {
 
   }
 
-  public function renderResults($results) {
+  public function renderResults($needle) {
+
+    $results = $this->getMovies($needle);
+
     $build = [
       '#theme' => 'search_results',
       '#results' => $results,
     ];
     // This is the important part, because will render only the TWIG template.
-    return new Response(render($build));
+    return $build;
+  }
+
+  /**
+   * Retrieves Movie title ID's.
+   */
+  public function findMovieIds($data, $needle) {
+    $ids = [];
+    // Find our movie based on titleId.
+    $results = $data['tcm']['titles'];
+    foreach ($results as $result) {
+      if (in_array($needle, $result)){
+        $ids[] = $result['titleId'];
+      }
+    }
+
+    return $ids;
   }
 
 }

@@ -16,7 +16,15 @@ tcm_api.all_movies:
 tcm_api.search:
   path: '/tcm-db'
   defaults:
-    _form: '\Drupal\tcm_api\Form\MovieSearchForm'
+    _form: '\Drupal\tcm_api\Form\MovieSearch'
+    _title: 'TCMDb'
+  requirements:
+    _permission: 'access content'
+
+tcm_api.search_results:
+  path: '/tcm-db/search/{needle}'
+  defaults:
+    _controller: '\Drupal\tcm_api\Controller\MoviesController::renderResults'
     _title: 'TCMDb'
   requirements:
     _permission: 'access content'
