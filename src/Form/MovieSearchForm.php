@@ -25,8 +25,11 @@ class MovieSearchForm extends FormBase {
 
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['search_box'] = [
-      '#type' => 'text',
-      '#description' => 'Search for a movie.',
+      '#type' => 'textfield',
+      '#title' => 'Search for a movie.',
+      '#size' => 60,
+      '#maxlength' => 128,
+      '#required' => TRUE,
     ];
 
     $form['actions']['submit'] = [
