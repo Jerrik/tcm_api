@@ -173,7 +173,7 @@ class MoviesController extends ControllerBase {
       'tcm' => [
         'titles' => $csv2json
       ]
-    ]
+      ];
 
     // $csv = file_get_contents($file);
     // $array = array_map("str_getcsv", explode("\n", $csv));
