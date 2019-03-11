@@ -130,7 +130,6 @@ class MoviesController extends ControllerBase {
 
       if (strpos(strtolower($haystack), strtolower($needle)) !== false){
         $ids[] = $result['titleId'];
-        break;
       }
     }
 
@@ -142,7 +141,13 @@ class MoviesController extends ControllerBase {
 
     // Get input string
     if ($input = $request->query->get('q')) {
-      $results = $this->getMovies($input);
+      $movies = $this->getMovies($input);
+      foreach ($movies as $movie) {
+        $results[] = [
+          'value' => $movie['titleId'],
+          'label' => $movie['name']
+        ];
+      }
     }
     return new JsonResponse($results);
   }
