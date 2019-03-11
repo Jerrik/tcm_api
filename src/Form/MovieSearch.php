@@ -4,6 +4,11 @@ namespace Drupal\tcm_api\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Component\Utility\Unicode;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
 
 /**
  * Implements an example form.
@@ -22,11 +27,19 @@ class MovieSearch extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['search_box'] = [
-      '#type' => 'textfield',
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'movie',
       '#title' => 'Search for a movie.',
       '#size' => 60,
       '#maxlength' => 128,
       '#required' => TRUE,
+      '#selection_settings' => [
+        'target_bundles' => ['movie'],
+    ]
+      // '#ajax' = [
+      //   'callback' =>'get_movie_titles',
+      //   'event' => 'autocompleteclose',
+      // ];
     ];
 
     $form['actions']['#type'] = 'actions';

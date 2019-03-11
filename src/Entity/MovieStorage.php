@@ -62,6 +62,8 @@ class MovieStorage extends ContentEntityNullStorage {
       'description' => $movie['description'],
       'image' => $movie['imageProfiles'][0]['url'],
       'year' => $movie['releaseYear'],
+      'runtime' => $movie['runtimeMinutes'],
+      'rating' => $movie['tvRating'],
     ];
   }
 

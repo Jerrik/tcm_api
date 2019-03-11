@@ -35,6 +35,8 @@ function tcm_api_theme($existing, $type, $theme, $path) {
           'description' => '',
           'image' => '',
           'year' => '',
+          'runtime' => '',
+          'rating' => '',
       ],
     ],
     'movies' => [
