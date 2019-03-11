@@ -28,7 +28,6 @@ tcm_api.search_results:
     _title: 'TCMDb'
   requirements:
     _permission: 'access content'
-    search: ^[a-zA-Z0-9_]+
 
 tcm_api.autocomplete:
   path: '/movies/autocomplete'
