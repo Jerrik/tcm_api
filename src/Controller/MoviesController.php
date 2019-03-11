@@ -173,7 +173,7 @@ class MoviesController extends ControllerBase {
     // $array = array_map("str_getcsv", explode("\n", $csv));
     $data = drupal_json_encode($csv2json);
 
-    return new JsonResponse($data);
+    return new Response($data);
   }
 
 }
