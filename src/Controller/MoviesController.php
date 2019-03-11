@@ -137,14 +137,14 @@ class MoviesController extends ControllerBase {
     return $ids;
   }
 
-  public function handleAutocomplete (Request $request) {
+  public function handleAutocomplete(Request $request) {
     $results = [];
 
     // Get input string
     if ($input = $request->query->get('q')) {
       $this->getMovies($input);
     }
-    return new JsonResponse($results);
+    return new JsonResponse($request->query->get('q'));
   }
 
 }
