@@ -142,9 +142,9 @@ class MoviesController extends ControllerBase {
 
     // Get input string
     if ($input = $request->query->get('q')) {
-      $this->getMovies($input);
+      $results = $this->getMovies($input);
     }
-    return new JsonResponse($request->query->get('q'));
+    return new JsonResponse($results);
   }
 
 }
