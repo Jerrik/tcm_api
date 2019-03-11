@@ -152,11 +152,26 @@ class MoviesController extends ControllerBase {
     return new JsonResponse($results);
   }
 
-  public function csvFile(Request $request) {
+  public function csvFile() {
     $file = "./../../CodeChallengeData.csv";
-    $csv = file_get_contents($file);
-    $array = array_map("str_getcsv", explode("\n", $csv));
-    $data = json_encode($array);
+    $delimiter = ',';
+
+    if (($handle = fopen($file, 'r')) === false) {
+      die('Error opening file');
+    }
+
+    $headers = fgetcsv($handle, 4000, $delimiter);
+    $csv2json = array();
+
+    while ($row = fgetcsv($handle, 4000, $delimiter)) {
+      $csv2json[] = array_combine($headers, $row);
+    }
+
+    fclose($handle);
+
+    // $csv = file_get_contents($file);
+    // $array = array_map("str_getcsv", explode("\n", $csv));
+    $data = json_encode($csv2json);
 
     return new JsonResponse($data);
   }
