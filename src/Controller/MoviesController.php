@@ -62,9 +62,9 @@ class MoviesController extends ControllerBase {
     }
 
     $movie_entities = [];
-
+    $search = ($find == false ? false : true);
     foreach ($movieIds as $id) {
-      $movie_entities[] = $this->getMovieEntity($id);
+      $movie_entities[] = $this->getMovieEntity($id, $search);
     }
 
     return $movie_entities;
@@ -87,12 +87,16 @@ class MoviesController extends ControllerBase {
   /**
    * Loads each movie as an entity.
    */
-  public function getMovieEntity($titleId) {
+  public function getMovieEntity($titleId,$search == FALSE) {
     $entity = NULL;
 
     if ($titleId) {
       // Get a storage object.
-      $movie_storage = \Drupal::entityTypeManager()->getStorage('movie');
+      if (!$search) {
+        $movie_storage = \Drupal::entityTypeManager()->getStorage('movie');
+      } else {
+        $movie_storage = \Drupal::entityTypeManager()->getStorage('movie_search');
+      }
       $entity = $movie_storage->load($titleId);
 
       // If Movie could not be loaded, throw 404.
