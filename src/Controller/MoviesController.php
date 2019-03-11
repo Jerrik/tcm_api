@@ -150,7 +150,7 @@ class MoviesController extends ControllerBase {
 
     // Get input string
     if ($input = $request->query->get('q')) {
-      $movies = $this->getMovies($input);
+      $movies = $this->getMovies($input, TRUE);
       foreach ($movies as $movie) {
         $results[] = [
           'value' => $movie['name'],
