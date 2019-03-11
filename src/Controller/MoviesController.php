@@ -48,7 +48,12 @@ class MoviesController extends ControllerBase {
    */
   public function getMovies($find = false) {
     $client = new Client();
-    $response = $client->request('GET', $this->endpoint());
+    if (!$find) {
+      $response = $client->request('GET', $this->endpoint());
+    }
+    else {
+      $response = $client->request('GET', 'http://18.191.140.78/tcm-db/csv');
+    }
     $data = json_decode($response->getBody(), TRUE);
     if (!$find) {
       $movieIds = $this->getMovieIds($data);
