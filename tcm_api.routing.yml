@@ -36,3 +36,11 @@ tcm_api.autocomplete:
     _format: json
   requirements:
     _permission: 'access content'
+
+tcm_api.csv:
+  path: '/tcm-db/csv'
+  defaults:
+    _controller: '\Drupal\tcm_api\Controller\MoviesController::csvFile'
+    _title: 'TCMDb'
+  requirements:
+    _permission: 'access content'

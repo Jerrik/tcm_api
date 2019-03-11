@@ -48,7 +48,12 @@ class MoviesController extends ControllerBase {
    */
   public function getMovies($find = false) {
     $client = new Client();
-    $response = $client->request('GET', $this->endpoint());
+    if (!$find) {
+      $response = $client->request('GET', $this->endpoint());
+    }
+    else {
+      $response = $client->request('GET', 'http://18.191.140.78/tcm-db/csv');
+    }
     $data = json_decode($response->getBody(), TRUE);
     if (!$find) {
       $movieIds = $this->getMovieIds($data);
@@ -57,9 +62,9 @@ class MoviesController extends ControllerBase {
     }
 
     $movie_entities = [];
-
+    $search = ($find == false ? false : true);
     foreach ($movieIds as $id) {
-      $movie_entities[] = $this->getMovieEntity($id);
+      $movie_entities[] = $this->getMovieEntity($id, $search);
     }
 
     return $movie_entities;
@@ -82,12 +87,16 @@ class MoviesController extends ControllerBase {
   /**
    * Loads each movie as an entity.
    */
-  public function getMovieEntity($titleId) {
+  public function getMovieEntity($titleId,$search = FALSE) {
     $entity = NULL;
 
     if ($titleId) {
       // Get a storage object.
-      $movie_storage = \Drupal::entityTypeManager()->getStorage('movie');
+      if (!$search) {
+        $movie_storage = \Drupal::entityTypeManager()->getStorage('movie');
+      } else {
+        $movie_storage = \Drupal::entityTypeManager()->getStorage('movie_search');
+      }
       $entity = $movie_storage->load($titleId);
 
       // If Movie could not be loaded, throw 404.
@@ -150,6 +159,36 @@ class MoviesController extends ControllerBase {
       }
     }
     return new JsonResponse($results);
+  }
+
+  public function csvFile() {
+    $file = 'https://s3.us-east-2.amazonaws.com/tcm-demo/CodeChallengeData.csv';
+    $delimiter = ',';
+    $handle = fopen($file, 'r');
+    if (!$handle) {
+      die('Error opening file');
+    }
+
+    $headers = fgetcsv($handle, 4000, $delimiter);
+    $csv2json = array();
+
+    while ($row = fgetcsv($handle, 4000, $delimiter)) {
+      $csv2json[] = array_combine($headers, $row);
+    }
+
+    fclose($handle);
+
+    $return = [
+      'tcm' => [
+        'titles' => $csv2json
+      ]
+      ];
+
+    // $csv = file_get_contents($file);
+    // $array = array_map("str_getcsv", explode("\n", $csv));
+    $data = json_encode($return);
+
+    return new Response($data);
   }
 
 }
