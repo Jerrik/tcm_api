@@ -152,4 +152,13 @@ class MoviesController extends ControllerBase {
     return new JsonResponse($results);
   }
 
+  public function csvFile(Request $request) {
+    $file = "./../../CodeChallengeData.csv";
+    $csv = file_get_contents($file);
+    $array = array_map("str_getcsv", explode("\n", $csv));
+    $data = json_encode($array);
+
+    return new JsonResponse($data);
+  }
+
 }
