@@ -87,7 +87,7 @@ class MoviesController extends ControllerBase {
   /**
    * Loads each movie as an entity.
    */
-  public function getMovieEntity($titleId,$search == FALSE) {
+  public function getMovieEntity($titleId,$search = FALSE) {
     $entity = NULL;
 
     if ($titleId) {
