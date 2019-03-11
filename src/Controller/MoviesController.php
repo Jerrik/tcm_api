@@ -153,7 +153,7 @@ class MoviesController extends ControllerBase {
   }
 
   public function csvFile() {
-    $file = "./CodeChallengeData.csv";
+    $file = "/sites/all/modules/custom/tcm_api/CodeChallengeData.csv";
     $delimiter = ',';
 
     if (($handle = fopen($file, 'r')) === false) {
