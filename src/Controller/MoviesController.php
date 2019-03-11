@@ -130,6 +130,8 @@ class MoviesController extends ControllerBase {
         $movie_result = [
           'id' => $result['titleId'],
           'name' => $result['name']
+        ];
+        break;
       }
     }
 
