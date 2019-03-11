@@ -142,10 +142,11 @@ class MoviesController extends ControllerBase {
     // Get input string
     if ($input = $request->query->get('q')) {
       $movies = $this->getMovies($input);
-      foreach ($movies as $movie) {
+      foreach ($movies as $id) {
+        $movie_entity = $this->getMovieEntity($id);
         $results[] = [
-          'value' => $movie['titleId'],
-          'label' => $movie['name']
+          'value' => $movie_entity['titleId'],
+          'label' => $movie_entity['name']
         ];
       }
     }

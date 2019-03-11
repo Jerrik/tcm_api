@@ -33,9 +33,9 @@ class MovieSearch extends FormBase {
       '#maxlength' => 128,
       '#required' => TRUE,
       '#autocomplete_route_name' => 'tcm_api.autocomplete',
-      '#autocomplete_route_parameters' => [
-        'name' => 'name'
-      ],
+      // '#autocomplete_route_parameters' => [
+      //   'name' => 'name'
+      // ],
     ];
 
     $form['actions']['#type'] = 'actions';
