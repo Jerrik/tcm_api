@@ -144,7 +144,6 @@ class MoviesController extends ControllerBase {
 
     // Get input string
     if ($input = $request->query->get('q')) {
-      $input = Unicode::strtolower($input);
       $this->getMovies($input);
     }
     return new JsonResponse($results);
