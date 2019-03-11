@@ -169,9 +169,15 @@ class MoviesController extends ControllerBase {
 
     fclose($handle);
 
+    $return = [
+      'tcm' => [
+        'titles' => $csv2json
+      ]
+    ]
+
     // $csv = file_get_contents($file);
     // $array = array_map("str_getcsv", explode("\n", $csv));
-    $data = json_encode($csv2json);
+    $data = json_encode($return);
 
     return new Response($data);
   }
