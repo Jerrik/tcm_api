@@ -6,6 +6,7 @@ use Drupal\Core\Controller\ControllerBase;
 use GuzzleHttp\Client;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller class.
