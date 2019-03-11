@@ -62,7 +62,19 @@ class MovieStorage extends ContentEntityNullStorage {
       'description' => $movie['description'],
       'image' => $movie['imageProfiles'][0]['url'],
       'year' => $movie['releaseYear'],
+      'runtime' => $this->convertToHoursMins($movie['runtimeMinutes']),
+      'rating' => $movie['tvRating'],
     ];
+  }
+
+  public function convertToHoursMins($minutes) {
+    $format = '%02d:%02d';
+    if ($minutes < 1) {
+      return;
+    }
+    $hours = floor($minutes / 60);
+    $minutes = ($minutes % 60);
+    return sprintf($format, $hours, $minutes);
   }
 
 }

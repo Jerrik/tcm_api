@@ -4,6 +4,11 @@ namespace Drupal\tcm_api\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Component\Utility\Unicode;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
 
 /**
  * Implements an example form.
@@ -27,6 +32,10 @@ class MovieSearch extends FormBase {
       '#size' => 60,
       '#maxlength' => 128,
       '#required' => TRUE,
+      '#autocomplete_route_name' => 'tcm_api.autocomplete',
+      // '#autocomplete_route_parameters' => [
+      //   'name' => 'name'
+      // ],
     ];
 
     $form['actions']['#type'] = 'actions';

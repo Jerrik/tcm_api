@@ -6,6 +6,8 @@ use Drupal\Core\Controller\ControllerBase;
 use GuzzleHttp\Client;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller class.
@@ -124,15 +126,7 @@ class MoviesController extends ControllerBase {
     foreach ($results as $result) {
 
       // Things that content can be searched by
-      $haystack = '';
-      $haystack .= $result['titleId'];
-      $haystack .= $result['description'];
-      $haystack .= $result['releaseYear'];
-      $haystack .= $result['tvRating'];
-      $haystack .= $result['tvParticipants'];
-      $haystack .= $result['tvDirectors'];
-      $haystack .= $result['tvGenres'];
-      $haystack .= $result['name'];
+      $haystack = $result['name'];
 
       if (strpos(strtolower($haystack), strtolower($needle)) !== false){
         $ids[] = $result['titleId'];
@@ -140,6 +134,22 @@ class MoviesController extends ControllerBase {
     }
 
     return $ids;
+  }
+
+  public function handleAutocomplete(Request $request) {
+    $results = [];
+
+    // Get input string
+    if ($input = $request->query->get('q')) {
+      $movies = $this->getMovies($input);
+      foreach ($movies as $movie) {
+        $results[] = [
+          'value' => $movie['title'],
+          'label' => $movie['title']
+        ];
+      }
+    }
+    return new JsonResponse($results);
   }
 
 }
