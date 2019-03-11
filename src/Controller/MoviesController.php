@@ -119,7 +119,7 @@ class MoviesController extends ControllerBase {
    * Retrieves Movie title ID's.
    */
   public function findMovieIds($data, $needle) {
-    $movie_result = [];
+    $ids = [];
     // Find our movie based on titleId.
     $results = $data['tcm']['titles'];
     foreach ($results as $result) {
@@ -128,15 +128,12 @@ class MoviesController extends ControllerBase {
       $haystack = $result['name'];
 
       if (strpos(strtolower($haystack), strtolower($needle)) !== false){
-        $movie_result = [
-          'id' => $result['titleId'],
-          'name' => $result['name']
-        ];
+        $ids[] = $result['titleId'];
         break;
       }
     }
 
-    return $movie_result;
+    return $ids;
   }
 
   public function handleAutocomplete (Request $request) {
