@@ -27,19 +27,12 @@ class MovieSearch extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['search_box'] = [
-      '#type' => 'entity_autocomplete',
-      '#target_type' => 'movie',
+      '#type' => 'textfield',
       '#title' => 'Search for a movie.',
       '#size' => 60,
       '#maxlength' => 128,
       '#required' => TRUE,
-      '#selection_settings' => [
-        'target_bundles' => ['movie'],
-    ]
-      // '#ajax' = [
-      //   'callback' =>'get_movie_titles',
-      //   'event' => 'autocompleteclose',
-      // ];
+      '#autocomplete_route_name' => 'tcm_api.autocomplete'
     ];
 
     $form['actions']['#type'] = 'actions';

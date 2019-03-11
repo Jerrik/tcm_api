@@ -118,28 +118,33 @@ class MoviesController extends ControllerBase {
    * Retrieves Movie title ID's.
    */
   public function findMovieIds($data, $needle) {
-    $ids = [];
+    $movie_result = [];
     // Find our movie based on titleId.
     $results = $data['tcm']['titles'];
     foreach ($results as $result) {
 
       // Things that content can be searched by
-      $haystack = '';
-      $haystack .= $result['titleId'];
-      $haystack .= $result['description'];
-      $haystack .= $result['releaseYear'];
-      $haystack .= $result['tvRating'];
-      $haystack .= $result['tvParticipants'];
-      $haystack .= $result['tvDirectors'];
-      $haystack .= $result['tvGenres'];
-      $haystack .= $result['name'];
+      $haystack = $result['name'];
 
       if (strpos(strtolower($haystack), strtolower($needle)) !== false){
-        $ids[] = $result['titleId'];
+        $movie_result = [
+          'id' => $result['titleId'],
+          'name' => $result['name']
       }
     }
 
-    return $ids;
+    return $movie_result;
+  }
+
+  public function handleAutocomplete (Request $request) {
+    $results = [];
+
+    // Get input string
+    if ($input = $request->query->get('q')) {
+      $input = Unicode::strtolower($input);
+      $this->getMovies($input);
+    }
+    return new JsonResponse($results);
   }
 
 }
