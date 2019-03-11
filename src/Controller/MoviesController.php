@@ -153,7 +153,7 @@ class MoviesController extends ControllerBase {
   }
 
   public function csvFile() {
-    $file = drupal_get_path('module', 'tcm_api') . "CodeChallengeData.csv";
+    $file = 'https://s3.us-east-2.amazonaws.com/tcm-demo/CodeChallengeData.csv';
     $delimiter = ',';
 
     if (($handle = fopen($file, 'r')) === false) {
