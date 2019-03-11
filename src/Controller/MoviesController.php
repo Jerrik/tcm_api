@@ -144,7 +144,7 @@ class MoviesController extends ControllerBase {
       $movies = $this->getMovies($input);
       foreach ($movies as $movie) {
         $results[] = [
-          'value' => $movie['id'],
+          'value' => $movie['title'],
           'label' => $movie['title']
         ];
       }
