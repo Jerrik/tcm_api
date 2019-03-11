@@ -43,9 +43,19 @@ class Movie extends ContentEntityBase {
       '#image' => $entity['image'],
       '#description' => $entity['description'],
       '#year' => $entity['year'],
-      '#runtime' => $entity['runtime'],
+      '#runtime' => $this->convertToHoursMins($entity['runtime']),
       '#rating' => $entity['rating'],
     ];
+  }
+
+  public function convertToHoursMins($minutes) {
+    $format = '%02d:%02d';
+    if ($minutes < 1) {
+      return;
+    }
+    $hours = floor($minutes / 60);
+    $minutes = ($minutes % 60);
+    return sprintf($format, $hours, $minutes);
   }
 
 }
