@@ -155,7 +155,7 @@ class MoviesController extends ControllerBase {
   public function csvFile() {
     $file = 'https://s3.us-east-2.amazonaws.com/tcm-demo/CodeChallengeData.csv';
     $delimiter = ',';
-    $handle = file_get_contents($file);
+    $handle = fopen($file, 'r');
     if (!$handle) {
       die('Error opening file');
     }
