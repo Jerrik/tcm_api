@@ -43,6 +43,8 @@ class Movie extends ContentEntityBase {
       '#image' => $entity['image'],
       '#description' => $entity['description'],
       '#year' => $entity['year'],
+      '#runtime' => $entity['runtime'],
+      '#rating' => $entity['rating'],
     ];
   }
 
