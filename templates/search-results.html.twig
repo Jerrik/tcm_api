@@ -1,0 +1,24 @@
+{#
+/**
+ * @file search-results.html.twig
+ * Default theme implementation to present Movie data.
+ */
+#}
+{% if results is empty %}
+  <span class="badge badge-secondary">No movies found with that criteria. Please try again.</span>
+{% else %}
+  {% for key, movie in results %}
+    <div class="card-block">
+      <div class="card border-light" style="margin: 0px 7px 0px 7px;">
+        <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ movie.image }}">
+        <div class="card-body">
+          <h3><a href="/movie/{{ movie.id }}" class="card-link">{{ movie.title }} <small class="text-muted">({{ movie.year }})</small></a></h3>
+          <p class="card-text">{{ movie.description }}</p>
+          <div class="d-flex justify-content-between align-items-center">
+          <small class="text-muted">ID: {{ movie.id }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}
